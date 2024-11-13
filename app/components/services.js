@@ -4,18 +4,28 @@ import Link from 'next/link';
 
 const Services = () => {
   useEffect(() => {
-    
+    // Animation for rotating slide image
     gsap.fromTo(
       '.slide-image', 
-      { x: '-30px' },
+      { rotationY: 0 },
       {
-        x: '30px', 
+        rotationY: 180, 
         duration: 6, 
         ease: 'power2.inOut', 
         repeat: -1, 
         yoyo: true, 
       }
     );
+
+    // Animation for cards
+    gsap.from(".card", {
+      opacity: 0,
+      y: 50,
+      duration: 1.2,
+      stagger: 0.3,
+      ease: "power3.out",
+      delay: 0.5,
+    });
   }, []);
 
   return (
@@ -42,11 +52,11 @@ const Services = () => {
           <div className="font-light">
             What
             <div className="font-bold">Problem</div>
-            can we <text className="font-bold text-[#E95A0C] mt-3">solve <br/> together</text>?
+            can we <span className="font-bold text-[#E95A0C] mt-3">solve <br/> together</span>?
           </div>
 
           {/* Card 1 */}
-          <div className="flex flex-col bg-white text-[#0f1830] ml-12 p-4 mt-[-5%] mb-16 shadow-lg w-[280px] border border-[#E5E5E5]">
+          <div className="card flex flex-col bg-white text-[#0f1830] ml-12 p-4 mt-[-5%] mb-16 shadow-lg w-[280px] border border-[#E5E5E5]">
             <div className="mb-4 mt-6">
               <img src="/asset 1.png" alt="Logo" className="w-16 h-16" />
             </div>
@@ -59,7 +69,7 @@ const Services = () => {
           </div>
 
           {/* Card 2 */}
-          <div className="flex flex-col bg-white text-[#1E2538] p-4 mt-[-5%] mb-16 shadow-lg w-[280px] border border-[#E5E5E5]">
+          <div className="card flex flex-col bg-white text-[#1E2538] p-4 mt-[-5%] mb-16 shadow-lg w-[280px] border border-[#E5E5E5]">
             <div className="mb-4 mt-6">
               <img src="/asset 2.png" alt="Logo" className="w-16 h-16" />
             </div>
@@ -72,7 +82,7 @@ const Services = () => {
           </div>
 
           {/* Card 3 */}
-          <div className="flex flex-col bg-white text-[#1E2538] p-4 mt-[-5%] mb-16 shadow-lg w-[280px] border border-[#E5E5E5]">
+          <div className="card flex flex-col bg-white text-[#1E2538] p-4 mt-[-5%] mb-16 shadow-lg w-[280px] border border-[#E5E5E5]">
             <div className="mb-4 mt-6">
               <img src="/asset 3.png" alt="Logo" className="w-16 h-16" />
             </div>
@@ -87,8 +97,8 @@ const Services = () => {
       </div>
 
       {/* This is the image section with the sliding animation */}
-      <div className="mt-[-15%]">
-        <img src="/slide 1.png" alt="Vector 1" className="w-full slide-image" />
+      <div className="mt-[-15%] w-full">
+        <img src="/slide 1.png" alt="Vector 1" className="slide-image" />
       </div>
     </div>
   );

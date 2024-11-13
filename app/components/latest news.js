@@ -1,6 +1,23 @@
+import { useEffect } from 'react';
+import gsap from 'gsap';
 import Link from 'next/link';
 
 const News = () => {
+  useEffect(() => {
+    // GSAP animation for cards
+    gsap.fromTo(
+      '.news-card', 
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        stagger: 0.3, // Stagger the animations
+        ease: 'power2.out',
+      }
+    );
+  }, []);
+
   return (
     <div className='bg-white flex flex-col max-w-full mt-28 ml-12 text-4xl'>
       <h2 className='text-[#001B2E] font-thin'>
@@ -19,7 +36,7 @@ const News = () => {
       {/* Cards container */}
       <div className="flex flex-wrap gap-6 mt-12 justify-center items-center">
         {/* Card 1 */}
-        <div className='max-w-sm rounded overflow-hidden shadow-lg p-4 bg-white relative'>
+        <div className='news-card max-w-sm rounded overflow-hidden shadow-lg p-4 bg-white relative'>
           <img src='/news 1.png' alt='card' width={500} height={300} className='w-full h-48 object-cover' />
 
           <h2 className='text-xl font-semibold mt-4'>MEFIC Saudi Riyal Murhabah Fund for the period ending on 2023-12-31</h2>
@@ -38,7 +55,7 @@ const News = () => {
         </div>
 
         {/* Card 2 */}
-        <div className='max-w-sm rounded overflow-hidden shadow-lg p-4 bg-white relative'>
+        <div className='news-card max-w-sm rounded overflow-hidden shadow-lg p-4 bg-white relative'>
           <img src='/news 2.png' alt='card' width={500} height={300} className='w-full h-48 object-cover' />
 
           <h2 className='text-xl font-semibold mt-4'>MEFIC signs a MOU for 300 rooms with Boudl Hotels and Resorts Group</h2>
@@ -57,7 +74,7 @@ const News = () => {
         </div>
 
         {/* Card 3 */}
-        <div className='max-w-sm rounded overflow-hidden shadow-lg p-4 bg-white relative'>
+        <div className='news-card max-w-sm rounded overflow-hidden shadow-lg p-4 bg-white relative'>
           <img src='/news 3.png' alt='card' width={500} height={300} className='w-full h-48 object-cover' />
 
           <h2 className='text-xl font-semibold mt-4'>Partnership to establish the first Saudi investment fund to finance film</h2>

@@ -5,7 +5,7 @@ const Footer = () => {
   useEffect(() => {
     // GSAP Animation for the image
     gsap.fromTo(
-      '.slide-image', 
+      '.slide', 
       { x: '-30px' }, 
       {
         x: '30px', 
@@ -25,7 +25,7 @@ const Footer = () => {
           <img
             src="/slide 2.png"
             alt="Slide Image"
-            className="w-full slide-image"
+            className="w-full slide"
           />
         </div>
 
