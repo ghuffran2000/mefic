@@ -1,10 +1,13 @@
 import { useEffect } from 'react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger'; 
 import Link from 'next/link';
+
+gsap.registerPlugin(ScrollTrigger); 
 
 const News = () => {
   useEffect(() => {
-    // GSAP animation for cards
+    
     gsap.fromTo(
       '.news-card', 
       { opacity: 0, y: 50 },
@@ -12,8 +15,13 @@ const News = () => {
         opacity: 1,
         y: 0,
         duration: 1,
-        stagger: 0.3, // Stagger the animations
+        stagger: 0.3, 
         ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.news-card', 
+          start: 'top 80%', 
+          toggleActions: 'play none none none', 
+        },
       }
     );
   }, []);

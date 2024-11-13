@@ -6,9 +6,9 @@ const Footer = () => {
     // GSAP Animation for the image
     gsap.fromTo(
       '.slide', 
-      { x: '-30px' }, 
+      {rotationY: 0}, 
       {
-        x: '30px', 
+        rotationY: 180, 
         duration: 6, 
         ease: 'power2.inOut', 
         repeat: -1, 

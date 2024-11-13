@@ -1,42 +1,50 @@
 import { useEffect } from 'react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
+
+gsap.registerPlugin(ScrollTrigger); // Register the ScrollTrigger plugin
 
 const Services = () => {
   useEffect(() => {
-    // Animation for rotating slide image
+    // Animation for rotating slide image (no ScrollTrigger)
     gsap.fromTo(
-      '.slide-image', 
+      '.slide-image',
       { rotationY: 0 },
       {
-        rotationY: 180, 
-        duration: 6, 
-        ease: 'power2.inOut', 
-        repeat: -1, 
-        yoyo: true, 
+        rotationY: 180,
+        duration: 6,
+        ease: 'power2.inOut',
+        repeat: -1,
+        yoyo: true,
       }
     );
 
-    // Animation for cards
-    gsap.from(".card", {
+    // Scroll-triggered animation for cards
+    gsap.from('.card', {
       opacity: 0,
       y: 50,
       duration: 1.2,
       stagger: 0.3,
-      ease: "power3.out",
+      ease: 'power3.out',
       delay: 0.5,
+      scrollTrigger: {
+        trigger: '.services', // Trigger when the .services section is in view
+        start: 'top 80%', // Start animation when the section comes into view
+        toggleActions: 'play none none none', // Control the animation actions
+      },
     });
   }, []);
 
   return (
     <div className="bg-[#1E2538] flex flex-col max-w-full mt-28">
-      <div className="flex flex-col mt-24 text-white lg:px-6 ml-12 text-4xl font-serif">
-        <div className="font-light mb-3"> 
-          Our <span className="font-bold">Services</span> & 
+      <div className="services flex flex-col mt-24 text-white lg:px-6 ml-12 text-4xl font-serif">
+        <div className="font-light mb-3">
+          Our <span className="font-bold">Services</span> &
           <span className="font-bold text-[#E95A0C]"> Expertise</span>
         </div>
 
-        <hr className="border-t-4 border-[#2D3C65] w-[12%]" /> 
+        <hr className="border-t-4 border-[#2D3C65] w-[12%]" />
 
         <div className="text-sm font-normal ml-[50%]">
           <p className="mt-[-10%]">
@@ -52,7 +60,7 @@ const Services = () => {
           <div className="font-light">
             What
             <div className="font-bold">Problem</div>
-            can we <span className="font-bold text-[#E95A0C] mt-3">solve <br/> together</span>?
+            can we <span className="font-bold text-[#E95A0C] mt-3">solve <br /> together</span>?
           </div>
 
           {/* Card 1 */}
