@@ -1,8 +1,4 @@
-import { useState, useEffect } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger); // Register ScrollTrigger
+import { useState } from 'react';
 
 const Portfolio = () => {
     const [activeTab, setActiveTab] = useState('All');
@@ -17,26 +13,6 @@ const Portfolio = () => {
     ];
 
     const filteredLogos = activeTab === 'All' ? logos : logos.filter(logo => logo.category === activeTab);
-
-    useEffect(() => {
-        // GSAP animation for portfolio cards
-        gsap.fromTo(
-            '.portfolio-card', 
-            { opacity: 0, y: 50 },
-            {
-                opacity: 1,
-                y: 0,
-                duration: 1,
-                stagger: 0.3,
-                ease: 'power2.out',
-                scrollTrigger: {
-                    trigger: '.portfolio-card', 
-                    start: 'top 80%', 
-                    toggleActions: 'play none none none',
-                },
-            }
-        );
-    }, []);
 
     return (
         <div className="bg-white flex flex-col max-w-full mt-20 justify-center items-center text-4xl">

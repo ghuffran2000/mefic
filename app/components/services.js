@@ -3,16 +3,16 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
 
-gsap.registerPlugin(ScrollTrigger); // Register the ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
 
 const Services = () => {
   useEffect(() => {
     // Animation for rotating slide image (no ScrollTrigger)
     gsap.fromTo(
       '.slide-image',
-      { rotationY: 0 },
+      { x: -15 },
       {
-        rotationY: 180,
+        x: 30,
         duration: 6,
         ease: 'power2.inOut',
         repeat: -1,
@@ -20,28 +20,30 @@ const Services = () => {
       }
     );
 
-    // Scroll-triggered animation for cards
-    gsap.from('.card', {
-      opacity: 0,
-      y: 50,
-      duration: 1.2,
-      stagger: 0.3,
-      ease: 'power3.out',
-      delay: 0.5,
-      scrollTrigger: {
-        trigger: '.services', // Trigger when the .services section is in view
-        start: 'top 80%', // Start animation when the section comes into view
-        toggleActions: 'play none none none', // Control the animation actions
-      },
-    });
+    // Flip rotation animation for cards
+    gsap.fromTo(
+      '.card',
+      { rotationY: 180, opacity: 0 },
+      {
+        rotationY: 0,
+        opacity: 1,
+        duration: 1.5,
+        stagger: 0.3,
+        ease: 'back.out(1.7)',
+        scrollTrigger: {
+          trigger: '.services', 
+          start: 'top 80%', 
+          toggleActions: 'play none none none', 
+        },
+      }
+    );
   }, []);
 
   return (
     <div className="bg-[#1E2538] flex flex-col max-w-full mt-28">
       <div className="services flex flex-col mt-24 text-white lg:px-6 ml-12 text-4xl font-serif">
         <div className="font-light mb-3">
-          Our <span className="font-bold">Services</span> &
-          <span className="font-bold text-[#E95A0C]"> Expertise</span>
+          Our <span className="font-bold">Services</span> & <span className="font-bold text-[#E95A0C]">Expertise</span>
         </div>
 
         <hr className="border-t-4 border-[#2D3C65] w-[12%]" />
